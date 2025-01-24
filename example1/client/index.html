@@ -2,16 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Example</title>
 </head>
 <body>
-
+<h1>CORS Example - Simple Request</h1>
+<button id="getData">GET Data (Allow CORS)</button>
+<pre id="response"></pre>
 <script>
-    fetch("http://localhost:4000/api/data")
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-        });
+    const getDataButton = document.getElementById('getData');
+    const responseDisplay = document.getElementById('response');
+
+    // GET 요청 (CORS 허용 서버)
+    getDataButton.addEventListener('click', async () => {
+        try {
+            const res = await fetch('http://localhost:3000/api/data');
+            const data = await res.json();
+            responseDisplay.textContent = JSON.stringify(data, null, 2);
+        } catch (err) {
+            responseDisplay.textContent = `Error: ${err.message}`;
+        }
+    });
+
 </script>
 </body>
 </html>
