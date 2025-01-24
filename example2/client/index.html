@@ -6,14 +6,14 @@
     <title>CORS Example</title>
 </head>
 <body>
-<h1>CORS Example - Simple Request(Allow CORS)</h1>
-<button id="getData">GET Data (Allow CORS)</button>
+<h1>CORS Example - Simple Request(Restricted CORS)</h1>
+<button id="getData">GET Data (Restricted CORS)</button>
 <pre id="response"></pre>
 <script>
     const getDataButton = document.getElementById('getData');
     const responseDisplay = document.getElementById('response');
 
-    // GET 요청 (CORS 허용 서버)
+    // GET 요청 (CORS 제한 서버)
     getDataButton.addEventListener('click', async () => {
         try {
             const res = await fetch('http://localhost:3000/api/data');
