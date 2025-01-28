@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Example</title>
+</head>
+<body>
+<h1>CORS Example - Preflight Request(Restricted CORS)</h1>
+<button id="getData">GET Data (Restricted CORS)</button>
+<pre id="response"></pre>
+<script>
+    const getDataButton = document.getElementById('getData');
+    const responseDisplay = document.getElementById('response');
+
+    // GET 요청 (CORS 허용 서버)
+    getDataButton.addEventListener('click', async () => {
+        const request = new Request('http://localhost:3000/api/data', { credentials: "include", headers: {
+                'X-Custom-Header': 'test'
+            } });
+        try {
+            const res = await fetch(request);
+            const data = await res.json();
+            responseDisplay.textContent = JSON.stringify(data, null, 2);
+        } catch (err) {
+            responseDisplay.textContent = `Error: ${err.message}`;
+        }
+    });
+
+</script>
+</body>
+</html>
